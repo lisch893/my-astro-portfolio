@@ -7,38 +7,91 @@ import BlogSection from "../components/BlogSection.astro";
 ---
 
 <Layout>
-  <div class="hero bg-slate-950 content-center h-dvh">
-    <div class="dots z-10"></div>
-    <div class="dots-fade z-10"></div>
-    <div class="hero-content z-20 text-center">
-      <h1
-        class="text-6xl font-semibold tracking-tight leading-snug text-balance text-white pb-10 inline-block w-4/5"
+  <div class="hero content-center h-dvh bg-white">
+    <div
+      class="hero-content m-5 rounded-xl bg-green-900 h-19/20 z-20 flex items-end flex-wrap"
+    >
+      <video
+        id="hero-bg-video"
+        autoplay
+        muted
+        loop
+        playsinline
+        preload="auto"
+        src="/public/forest-top.mp4"
+        class="rounded-xl h-full w-full object-cover brightness-65"></video>
+      <button
+        id="pause-bg-video-btn"
+        onclick="pauseVid()"
+        type="button"
+        class="absolute right-10 bottom-10 text-green-900 p-2 rounded-full bg-white"
+        ><iconify-icon id="pause-icon" icon="mdi:pause" class="text-3xl block"
+        ></iconify-icon></button
       >
-        I am learning React, Astro and Tailwind!
-      </h1>
-      <p class="font-semibold text-3xl text-sky-700 pb-10 font-mono">
-        Frontend Development
-      </p>
-      <a
-        href="/projects"
-        class="bg-sky-900 hover:bg-sky-700 text-white lowercase font-semibold py-2 px-4 rounded-full justify-items-center"
-        >My projects</a
-      >
+      <div class="p-10 absolute">
+        <h1
+          class="text-6xl font-semibold tracking-tight leading-normal text-balance text-white pb-5 inline-block w-4/5"
+        >
+          I am learning React, Astro and Tailwind!
+        </h1>
+        <p class="font-semibold text-3xl text-white pb-7 font-mono">
+          Frontend Development
+        </p>
+        <div class="grid grid-cols-3 gap-5 w-full">
+          <a
+            href="#"
+            class="text-white px-7 py-5 bg-green-950/30 hover:bg-green-950/60 transition rounded-xl relative group"
+          >
+            <h2 class="font-semibold text-xl pb-2">Titel menu</h2>
+            <p class="font-mono w-3/4">Description of this menu point</p>
+            <iconify-icon
+              icon="nrk:arrow-right-long"
+              class="absolute bottom-4 right-4 text-xl transition-transform group-hover:translate-x-1 duration-400 w-15px hover:w-20px"
+            ></iconify-icon>
+          </a>
+          <a
+            href="#"
+            class="text-white px-7 py-5 bg-green-950/30 hover:bg-green-950/60 transition rounded-xl relative group"
+          >
+            <h2 class="font-semibold text-xl pb-2">Titel menu</h2>
+            <p class="font-mono w-3/4">Description of this menu point</p>
+            <iconify-icon
+              icon="nrk:arrow-right-long"
+              class="absolute bottom-4 right-4 text-xl transition-transform group-hover:translate-x-1 duration-400 w-15px hover:w-20px"
+            ></iconify-icon>
+          </a>
+          <a
+            href="#"
+            class="text-white px-7 py-5 bg-green-950/30 hover:bg-green-950/60 transition rounded-xl relative group"
+          >
+            <h2 class="font-semibold text-xl pb-2">Titel menu</h2>
+            <p class="font-mono w-3/4">Description of this menu point</p>
+            <iconify-icon
+              icon="nrk:arrow-right-long"
+              class="absolute bottom-4 right-4 text-xl transition-transform group-hover:translate-x-1 duration-400 w-15px hover:w-20px"
+            ></iconify-icon>
+          </a>
+        </div>
+      </div>
     </div>
   </div>
-
-  <AboutSection />
-  <SkillsSection />
-  <ProjectsSection />
-  <BlogSection />
 </Layout>
+
+<AboutSection />
+<SkillsSection />
+<ProjectsSection />
+<BlogSection />
 
 <style>
   .hero,
   .hero-content {
     position: relative;
   }
-  .dots {
+
+  #pause-bg-video-btn {
+    cursor: pointer;
+  }
+  /*.dots {
     position: absolute;
     inset: 0;
     background-image: radial-gradient(circle, #bb896740 1px, transparent 1px);
@@ -65,16 +118,30 @@ import BlogSection from "../components/BlogSection.astro";
     to {
       background-position: 25px 25px;
     }
-  }
+  }*/
 </style>
 
 <script>
-  const hero = document.querySelector<HTMLElement>(".hero");
+  /*const hero = document.querySelector<HTMLElement>(".hero");
   const dots = document.querySelector<HTMLElement>(".dots");
 
   if (hero && dots) {
     hero.addEventListener("mousemove", (e: MouseEvent) => {
       dots.style.maskImage = `radial-gradient(circle 200px at ${e.clientX}px ${e.clientY}px, transparent 0%, black 100%)`;
     });
-  }
+  }*/
+
+  const video = document.getElementById("hero-bg-video") as HTMLVideoElement;
+  const btn = document.getElementById("pause-bg-video-btn")!;
+  const icon = document.getElementById("pause-icon")!;
+
+  btn.addEventListener("click", () => {
+    if (video.paused) {
+      video.play();
+      icon.setAttribute("icon", "mdi:pause");
+    } else {
+      video.pause();
+      icon.setAttribute("icon", "mdi:play");
+    }
+  });
 </script>
