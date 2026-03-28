@@ -1,0 +1,80 @@
+---
+import Layout from "../layouts/Layout.astro";
+import AboutSection from "../components/AboutSection.astro";
+import SkillsSection from "../components/SkillsSection.astro";
+import ProjectsSection from "../components/ProjectsSection.astro";
+import BlogSection from "../components/BlogSection.astro";
+---
+
+<Layout>
+  <div class="hero bg-slate-950 content-center h-dvh">
+    <div class="dots z-10"></div>
+    <div class="dots-fade z-10"></div>
+    <div class="hero-content z-20 text-center">
+      <h1
+        class="text-6xl font-semibold tracking-tight leading-snug text-balance text-white pb-10 inline-block w-4/5"
+      >
+        I am learning React, Astro and Tailwind!
+      </h1>
+      <p class="font-semibold text-3xl text-sky-700 pb-10 font-mono">
+        Frontend Development
+      </p>
+      <a
+        href="/projects"
+        class="bg-sky-900 hover:bg-sky-700 text-white lowercase font-semibold py-2 px-4 rounded-full justify-items-center"
+        >My projects</a
+      >
+    </div>
+  </div>
+
+  <AboutSection />
+  <SkillsSection />
+  <ProjectsSection />
+  <BlogSection />
+</Layout>
+
+<style>
+  .hero,
+  .hero-content {
+    position: relative;
+  }
+  .dots {
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(circle, #bb896740 1px, transparent 1px);
+    background-size: 30px 30px;
+    -webkit-mask-image: radial-gradient(
+      circle 150px at 50% 50%,
+      transparent 0%,
+      transparent 30%,
+      black 100%
+    );
+    transition: mask-image 0.1s ease;
+  }
+
+  .dots-fade {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, transparent 75%, #0f172a 100%);
+}
+
+  @keyframes raster-animation {
+    from {
+      background-position: 0 0;
+    }
+    to {
+      background-position: 25px 25px;
+    }
+  }
+</style>
+
+<script>
+  const hero = document.querySelector<HTMLElement>(".hero");
+  const dots = document.querySelector<HTMLElement>(".dots");
+
+  if (hero && dots) {
+    hero.addEventListener("mousemove", (e: MouseEvent) => {
+      dots.style.maskImage = `radial-gradient(circle 200px at ${e.clientX}px ${e.clientY}px, transparent 0%, black 100%)`;
+    });
+  }
+</script>
